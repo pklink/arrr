@@ -1,0 +1,13 @@
+{
+    "autoload": {
+        "psr-0": {
+            "CptHook": "src/"
+        }
+    },
+    "require": {
+        "pklink/file-router": "0.2.1",
+        "dflydev/markdown": "v1.0.2",
+        "symfony/http-foundation": "v2.1.7",
+        "twig/twig": "v1.12.2"
+    }
+}
