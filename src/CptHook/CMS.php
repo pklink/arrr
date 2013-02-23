@@ -41,11 +41,13 @@ class CMS
     public function run()
     {
         // get router
-        $route = $this->request->get($this->routingParam, '');
+        $route = $this->request->get($this->routingParam, 'home');
 
         // handle router
         try {
             $content = $this->router->handleRoute($route);
+
+        // route does not exist -> 404
         } catch (\FileRouter\Exception\Route\DoesNotExist $e) {
             $content = $this->router->handleRoute('system/404');
         }
