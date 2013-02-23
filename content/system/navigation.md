@@ -1,2 +1,3 @@
-* [hello!](?r=hello)
-* [hello world!](?r=hello/world)
+* [Home](?)
+* [Hello!](?r=hello)
+* [Hello World!](?r=hello/world)
