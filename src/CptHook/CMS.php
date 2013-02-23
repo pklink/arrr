@@ -116,7 +116,7 @@ class CMS
 
         // route does not exist -> 404
         } catch (\FileRouter\Exception\Route\DoesNotExist $e) {
-            $content = $this->contentRouter->handleRoute('system/404');
+            $content = $this->systemRouter->handleRoute('404');
         }
 
         // render template
