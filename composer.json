@@ -11,6 +11,7 @@
         "symfony/http-foundation": "v2.1.7",
         "twig/twig": "v1.12.2",
         "softius/exceptionist": "dev-master",
-        "eloquent/asplode": "1.0.4"
+        "eloquent/asplode": "1.0.4",
+        "symfony/process": "v2.1.7"
     }
 }

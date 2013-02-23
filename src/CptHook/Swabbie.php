@@ -10,6 +10,6 @@ namespace CptHook;
 interface Swabbie
 {
 
-    public static function yarrr(array $config = [], CMS $cms);
+    public static function yarrr(array $config = [], $thingy);
 
 }

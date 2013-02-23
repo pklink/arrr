@@ -10,7 +10,7 @@ use CptHook\Router;
  * @author Pierre Klink
  * @license MIT See LICENSE file for more details
  */
-class CMS implements \CptHook\Swabbie
+class CMSGuy implements \CptHook\Swabbie
 {
 
     /**
@@ -36,9 +36,15 @@ class CMS implements \CptHook\Swabbie
      *      string templatePath (default: './themes/default'
      *      boolean debug (default: false)
      * @param \CptHook\CMS $cms
+     * @throws \InvalidArgumentException
      */
-    public static function yarrr(array $config = [], \CptHook\CMS $cms)
+    public static function yarrr(array $config = [], $cms)
     {
+        if (!($cms instanceof \CptHook\CMS))
+        {
+            throw new \InvalidArgumentException('$cms must be an instance of \CptHook\CMS');
+        }
+
         self::$givenConfig = new \Dotor\Dotor($config);
         self::$cms         = $cms;
 
@@ -47,6 +53,7 @@ class CMS implements \CptHook\Swabbie
         self::setRouter();
         self::setTwig();
         self::setRequest();
+        self::setHook();
     }
 
 
@@ -69,6 +76,20 @@ class CMS implements \CptHook\Swabbie
 
     }
 
+
+    /**
+     * Set Hook if hook.param is set
+     */
+    private static function setHook()
+    {
+        $param = self::$givenConfig->get('hook.param');
+
+        if ($param !== null)
+        {
+            $config = self::$givenConfig->get('hook');
+            self::$cms->setHook(new \CptHook\Hook($config));
+        }
+    }
 
 
     /**

@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'dflydev\\markdown' => $vendorDir . '/dflydev/markdown/src',
     'Twig_' => $vendorDir . '/twig/twig/lib/',
+    'Symfony\\Component\\Process' => $vendorDir . '/symfony/process/',
     'Symfony\\Component\\HttpFoundation' => $vendorDir . '/symfony/http-foundation/',
     'SessionHandlerInterface' => $vendorDir . '/symfony/http-foundation/Symfony/Component/HttpFoundation/Resources/stubs',
     'Icecave\\Isolator' => $vendorDir . '/icecave/isolator/lib',

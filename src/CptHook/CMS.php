@@ -3,6 +3,8 @@
 namespace CptHook;
 
 use Symfony\Component\HttpFoundation;
+use CptHook\Swabbie;
+
 
 /**
  * @author Pierre Klink
@@ -15,6 +17,12 @@ class CMS
      * @var Router
      */
     protected $contentRouter;
+
+
+    /**
+     * @var Hook
+     */
+    protected $hook;
 
 
     /**
@@ -53,12 +61,21 @@ class CMS
      */
     public function __construct(array $config = [])
     {
-        \CptHook\Swabbie\CMS::yarrr($config, $this);
+        Swabbie\CMSGuy::yarrr($config, $this);
     }
 
 
     /**
-     * @return \Symfony\Component\HttpFoundation\Request
+     * @return \CptHook\Hook
+     */
+    public function getHook()
+    {
+        return $this->hook;
+    }
+
+
+    /**
+     * @return HttpFoundation\Request
      */
     public function getRequest()
     {
@@ -135,6 +152,15 @@ class CMS
     public function setContentRouter(\CptHook\Router $router)
     {
         $this->contentRouter = $router;
+    }
+
+
+    /**
+     * @param \CptHook\Hook $hook
+     */
+    public function setHook($hook)
+    {
+        $this->hook = $hook;
     }
 
 
