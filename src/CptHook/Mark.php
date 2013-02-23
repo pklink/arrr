@@ -111,8 +111,9 @@ class Mark
      */
     private static function setTwig()
     {
-        $templatePath = self::$givenConfig->getScalar('templatePath', realpath(__DIR__ . '/../../themes/default'));
-        $loader       = new \Twig_Loader_Filesystem($templatePath);
+        $templatePath = self::$givenConfig->getScalar('templatePath', realpath(__DIR__ . '/../../themes'));
+        $theme        = self::$givenConfig->getScalar('theme', 'default');
+        $loader       = new \Twig_Loader_Filesystem(sprintf('%s/%s', $templatePath, $theme));
 
         self::$cms->setTwig(new \Twig_Environment($loader));
     }
