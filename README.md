@@ -10,4 +10,7 @@ A content management based on markdown files
 4. Look in the res/content directory
 5. Read the code
 
-    // @TODO add documentation
+
+```php
+// @TODO add documentation
+```
