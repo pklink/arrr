@@ -95,7 +95,7 @@ class Mark
     private static function setRouter()
     {
         $resourcePath = self::$givenConfig->getScalar('resourcePath', realpath(__DIR__ . '/../../res'));
-        $contentPath  = self::$givenConfig->getScalar('resourcePath.public', $resourcePath . '/content');
+        $contentPath  = self::$givenConfig->getScalar('resourcePath.content', $resourcePath . '/content');
         $systemPath   = self::$givenConfig->getScalar('resourcePath.system', $resourcePath . '/system');
 
         $contentPath = new \SplFileInfo($contentPath);
