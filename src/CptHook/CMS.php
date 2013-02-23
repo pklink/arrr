@@ -10,7 +10,12 @@ class CMS
     /**
      * @var Router
      */
-    protected $router;
+    protected $contentRouter;
+
+    /**
+     * @var Router
+     */
+    protected $systemRouter;
 
     /**
      * @var Request
@@ -18,7 +23,7 @@ class CMS
     protected $request;
 
     /**
-     * @var Twig_Environment
+     * @var \Twig_Environment
      */
     protected $twig;
 
@@ -30,72 +35,128 @@ class CMS
 
 
     /**
-     * @param array $config
+     * @param \CptHook\Router $systemRouter
      */
-    public function __construct(array $config = array())
+    public function setSystemRouter($systemRouter)
     {
-        $this->init($config);
+        $this->systemRouter = $systemRouter;
     }
 
 
-    public function run()
+    /**
+     * @return \CptHook\Router
+     */
+    public function getSystemRouter()
     {
-        // get router
-        $route = $this->request->get($this->routingParam, 'home');
-
-        // handle router
-        try {
-            $content = $this->router->handleRoute($route);
-
-        // route does not exist -> 404
-        } catch (\FileRouter\Exception\Route\DoesNotExist $e) {
-            $content = $this->router->handleRoute('system/404');
-        }
-
-        // twig
-        echo $this->twig->render('index.twig', array(
-            'title'      => $this->router->handleRoute('system/title'),
-            'footer'     => $this->router->handleRoute('system/footer'),
-            'navigation' => $this->router->handleRoute('system/navigation'),
-            'content'    => $content,
-        ));
+        return $this->systemRouter;
     }
 
 
     /**
      * @param array $config
-     *      string routingParam = r
-     *      string documentPath = content
-     *      string templatePath = themes/default
      */
-    private function init(array $config = array())
+    public function __construct(array $config = array())
     {
-        // routing param
-        if (isset($config['routingParam']))
+        Mark::arr($config, $this);
+    }
+
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     */
+    public function setRequest($request)
+    {
+        $this->request = $request;
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Request
+     */
+    public function getRequest()
+    {
+        return $this->request;
+    }
+
+    /**
+     * @param \CptHook\Router $router
+     */
+    public function setContentRouter(\CptHook\Router $router)
+    {
+        $this->contentRouter = $router;
+    }
+
+    /**
+     * @return \CptHook\Router
+     */
+    public function getContentRouter()
+    {
+        return $this->contentRouter;
+    }
+
+
+    /**
+     * @param $routingParam
+     * @throws \InvalidArgumentException
+     */
+    public function setRoutingParam($routingParam)
+    {
+        if (!is_string($routingParam))
         {
-            $this->routingParam = $config['routingParam'];
+            throw new \InvalidArgumentException('$routingParam must be a string');
         }
 
-        // markdown path & router
-        if (!isset($config['documentPath']))
-        {
-            $config['documentPath'] = realpath(__DIR__ . '/../../content');
+        $this->routingParam = $routingParam;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRoutingParam()
+    {
+        return $this->routingParam;
+    }
+
+    /**
+     * @param \Twig_Environment $twig
+     */
+    public function setTwig(\Twig_Environment $twig)
+    {
+        $this->twig = $twig;
+    }
+
+
+    /**
+     * @return \Twig_Environment
+     */
+    public function getTwig()
+    {
+        return $this->twig;
+    }
+
+
+    /**
+     * @return void
+     */
+    public function run()
+    {
+        // get contentRouter
+        $route = $this->request->get($this->routingParam, 'home');
+
+        // handle contentRouter
+        try {
+            $content = $this->contentRouter->handleRoute($route);
+
+        // route does not exist -> 404
+        } catch (\FileRouter\Exception\Route\DoesNotExist $e) {
+            $content = $this->contentRouter->handleRoute('system/404');
         }
 
-        $sourcePath   = new \SplFileInfo($config['documentPath']);
-        $this->router = new Router($sourcePath);
-
-        // template path & twig
-        if (!isset($config['templatePath']))
-        {
-            $config['templatePath'] = realpath(__DIR__ . '/../../themes/default');
-        }
-
-        $loader     = new \Twig_Loader_Filesystem($config['templatePath']);
-        $this->twig = new \Twig_Environment($loader);
-
-        // request instance
-        $this->request = Request::createFromGlobals();
+        // render template
+        echo $this->twig->render('index.twig', array(
+            'title'      => $this->systemRouter->handleRoute('title'),
+            'footer'     => $this->systemRouter->handleRoute('footer'),
+            'navigation' => $this->systemRouter->handleRoute('navigation'),
+            'content'    => $content,
+        ));
     }
 
 }
