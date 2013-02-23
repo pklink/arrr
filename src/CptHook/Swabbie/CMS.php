@@ -1,15 +1,16 @@
 <?php
 
-namespace CptHook;
+namespace CptHook\Swabbie;
 
 use Symfony\Component\HttpFoundation;
+use CptHook\Router;
 
 
 /**
  * @author Pierre Klink
  * @license MIT See LICENSE file for more details
  */
-class Mark
+class CMS implements \CptHook\Swabbie
 {
 
     /**
@@ -19,7 +20,7 @@ class Mark
 
 
     /**
-     * @var CMS
+     * @var \CptHook\CMS
      */
     private static $cms;
 
@@ -34,9 +35,9 @@ class Mark
      *      string routingParm (default: 'r')
      *      string templatePath (default: './themes/default'
      *      boolean debug (default: false)
-     * @param CMS $cms
+     * @param \CptHook\CMS $cms
      */
-    public static function arr(array $config = [], CMS $cms)
+    public static function yarrr(array $config = [], \CptHook\CMS $cms)
     {
         self::$givenConfig = new \Dotor\Dotor($config);
         self::$cms         = $cms;

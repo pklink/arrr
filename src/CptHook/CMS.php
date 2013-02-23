@@ -53,7 +53,7 @@ class CMS
      */
     public function __construct(array $config = [])
     {
-        Mark::arr($config, $this);
+        \CptHook\Swabbie\CMS::yarrr($config, $this);
     }
 
 
