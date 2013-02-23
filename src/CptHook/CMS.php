@@ -181,7 +181,7 @@ class CMS
     {
         if (!is_string($routingParam))
         {
-            throw new \InvalidArgumentException('$routingParam must be a string');
+            throw new \InvalidArgumentException('$routingParam has to be a string');
         }
 
         $this->routingParam = $routingParam;

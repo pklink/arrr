@@ -42,7 +42,7 @@ class CMSGuy implements \CptHook\Swabbie
     {
         if (!($cms instanceof \CptHook\CMS))
         {
-            throw new \InvalidArgumentException('$cms must be an instance of \CptHook\CMS');
+            throw new \InvalidArgumentException('$cms has to be an instance of \CptHook\CMS');
         }
 
         self::$givenConfig = new \Dotor\Dotor($config);

@@ -27,7 +27,7 @@ class HookGuy implements \CptHook\Swabbie
     {
         if (!($hook instanceof \CptHook\Hook))
         {
-            throw new \InvalidArgumentException('$hook must be an instance of \CptHook\Hook');
+            throw new \InvalidArgumentException('$hook has to be an instance of \CptHook\Hook');
         }
 
         self::$givenConfig = new \Dotor\Dotor($config);
