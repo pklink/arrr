@@ -26,6 +26,12 @@ class CMS
 
 
     /**
+     * @var CMS
+     */
+    protected static $instance;
+
+
+    /**
      * @var Router
      */
     protected $systemRouter;
@@ -59,7 +65,7 @@ class CMS
     /**
      * @param array $config
      */
-    public function __construct(array $config = [])
+    protected function __construct(array $config = [])
     {
         Swabbie\CMSGuy::yarrr($config, $this);
     }
@@ -116,6 +122,29 @@ class CMS
     public function getTwig()
     {
         return $this->twig;
+    }
+
+
+    /**
+     * @param array $config
+     */
+    public static function init(array $config = [])
+    {
+        self::$instance = new CMS($config);
+    }
+
+
+    /**
+     * @return CMS
+     */
+    public static function instance()
+    {
+        if (!(self::$instance instanceof CMS))
+        {
+            self::init();
+        }
+
+        return self::$instance;
     }
 
 

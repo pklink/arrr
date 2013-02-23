@@ -4,7 +4,7 @@
 require 'vendor/autoload.php';
 
 // create app
-$cms = new CptHook\CMS([
+\CptHook\CMS::init([
     'resourcePath' => [
         'content' => __DIR__ . '/res/content', // optionally; this is the default path
         'system'  => __DIR__ . '/res/system',  // optionally; this is the default path
@@ -22,5 +22,5 @@ $cms = new CptHook\CMS([
 ]);
 
 
-// run app
-$cms->run();
+// run CMS
+\CptHook\CMS::instance()->run();
