@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class FileRouter\Router\AbstractImpl</title>
+
+	<script type="text/javascript" src="resources/combined.js?2280910710"></script>
+	<script type="text/javascript" src="elementlist.js?3586947050"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-FileRouter.html">FileRouter<span></span></a>
+						<ul>
+				<li><a href="namespace-FileRouter.Exception.html">Exception<span></span></a>
+						<ul>
+				<li><a href="namespace-FileRouter.Exception.Directory.html">Directory</a>
+						</li>
+				<li><a href="namespace-FileRouter.Exception.File.html">File</a>
+						</li>
+				<li><a href="namespace-FileRouter.Exception.Route.html">Route</a>
+						</li>
+							</ul></li>
+				<li class="active"><a href="namespace-FileRouter.Router.html">Router</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li class="active"><a href="class-FileRouter.Router.AbstractImpl.html">AbstractImpl</a></li>
+				<li><a href="class-FileRouter.Router.Load.html">Load</a></li>
+				<li><a href="class-FileRouter.Router.OutputTxt.html">OutputTxt</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-FileRouter.Router.html" title="Summary of FileRouter\Router"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class AbstractImpl</h1>
+
+
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+<b><span>FileRouter\Router\AbstractImpl</span></b>			
+			 implements 
+				<a href="class-FileRouter.Router.html"><span>FileRouter\Router</span></a>
+			
+			
+		</dd>
+	</dl>
+
+
+	<div>
+		<h4>Direct known subclasses</h4>
+			<a href="class-FileRouter.Router.Load.html">FileRouter\Router\Load</a>, 
+			<a href="class-FileRouter.Router.OutputTxt.html">FileRouter\Router\OutputTxt</a>
+	</div>
+
+
+
+
+
+
+	<div class="info">
+		<b>Abstract</b><br />
+		
+		<b>Namespace:</b> <a href="namespace-FileRouter.html">FileRouter</a>\<a href="namespace-FileRouter.Router.html">Router</a><br />
+		
+
+				<b>License:</b>
+				<a href="MIT">See LICENSE file for more information</a><br />
+				<b>Author:</b>
+				Pierre Klink &lt;<a
+href="mailto:dev&#64;klinks.info">dev&#64;<!---->klinks.info</a>&gt;<br />
+		<b>Located at</b> <a href="source-class-FileRouter.Router.AbstractImpl.html#10-154" title="Go to source code">FileRouter/Router/AbstractImpl.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-FileRouter.Router.AbstractImpl.html#35-45" title="Go to source code">__construct</a>( <span><code><a href="class-SplFileInfo.html">SplFileInfo</a></code> <var>$sourcePath</var></span>, <span>string <var>$fileExtension</var> = <span class="php-quote">'php'</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Create instance and set source path and allowed file extension.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create instance and set source path and allowed file extension.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$sourcePath</var></dt>
+					<dd><code><code><a href="class-SplFileInfo.html">SplFileInfo</a></code></code><br>$sourcePath</dd>
+					<dt><var>$fileExtension</var></dt>
+					<dd><code>string</code><br>$fileExtension default is "php"</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getFileByRoute" id="_getFileByRoute">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-SplFileInfo.html">SplFileInfo</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getFileByRoute">#</a>
+		<code><a href="source-class-FileRouter.Router.AbstractImpl.html#48-82" title="Go to source code">getFileByRoute</a>( <span>string <var>$route</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the mapped file for the given route $route.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the mapped file for the given route $route.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$route</var></dt>
+					<dd><code>string</code><br>$route</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-SplFileInfo.html">SplFileInfo</a></code></code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-FileRouter.Exception.File.IsNotInSourcePath.html">FileRouter\Exception\File\IsNotInSourcePath</a></code></code><br />
+					<code><code><a href="class-FileRouter.Exception.Route.DoesNotExist.html">FileRouter\Exception\Route\DoesNotExist</a></code></code><br />
+					<code><code><a href="class-UnexpectedValueException.html">UnexpectedValueException</a></code></code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getFileExtension" id="_getFileExtension">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getFileExtension">#</a>
+		<code><a href="source-class-FileRouter.Router.AbstractImpl.html#85-94" title="Go to source code">getFileExtension</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the allowed file extension.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the allowed file extension.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-FileRouter.Router.AbstractImpl.html#$fileExtension">FileRouter\Router\AbstractImpl::<var>$fileExtension</var></a></code></code><br />
+				</div>
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-FileRouter.Router.html#_getFileExtension">FileRouter\Router::getFileExtension()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getSourcePath" id="_getSourcePath">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-SplFileInfo.html">SplFileInfo</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getSourcePath">#</a>
+		<code><a href="source-class-FileRouter.Router.AbstractImpl.html#97-106" title="Go to source code">getSourcePath</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the source path</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the source path</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-SplFileInfo.html">SplFileInfo</a></code></code><br />
+				</div>
+
+
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-FileRouter.Router.AbstractImpl.html#$sourcePath">FileRouter\Router\AbstractImpl::<var>$sourcePath</var></a></code></code><br />
+				</div>
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-FileRouter.Router.html#_getSourcePath">FileRouter\Router::getSourcePath()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setFileExtension" id="_setFileExtension">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setFileExtension">#</a>
+		<code><a href="source-class-FileRouter.Router.AbstractImpl.html#109-126" title="Go to source code">setFileExtension</a>( <span>string <var>$extension</var> = <span class="php-quote">'php'</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the allowed file extension</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the allowed file extension</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$extension</var></dt>
+					<dd><code>string</code><br>$extension</dd>
+				</dl></div>
+
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-UnexpectedValueException.html">UnexpectedValueException</a></code></code><br />
+				</div>
+
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-FileRouter.Router.AbstractImpl.html#$fileExtension">FileRouter\Router\AbstractImpl::<var>$fileExtension</var></a></code></code><br />
+				</div>
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-FileRouter.Router.html#_setFileExtension">FileRouter\Router::setFileExtension()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setSourcePath" id="_setSourcePath">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setSourcePath">#</a>
+		<code><a href="source-class-FileRouter.Router.AbstractImpl.html#129-152" title="Go to source code">setSourcePath</a>( <span><code><a href="class-SplFileInfo.html">SplFileInfo</a></code> <var>$sourcePath</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the source path</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the source path</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$sourcePath</var></dt>
+					<dd><code><code><a href="class-SplFileInfo.html">SplFileInfo</a></code></code><br>$sourcePath</dd>
+				</dl></div>
+
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-FileRouter.Exception.Directory.DoesNotExist.html">FileRouter\Exception\Directory\DoesNotExist</a></code></code><br />
+					<code><code><a href="class-FileRouter.Exception.Directory.IsNotReadable.html">FileRouter\Exception\Directory\IsNotReadable</a></code></code><br />
+				</div>
+
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-FileRouter.Router.AbstractImpl.html#$sourcePath">FileRouter\Router\AbstractImpl::<var>$sourcePath</var></a></code></code><br />
+				</div>
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-FileRouter.Router.html#_setSourcePath">FileRouter\Router::setSourcePath()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-FileRouter.Router.html#methods">FileRouter\Router</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-FileRouter.Router.html#_handleRoute">handleRoute()</a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="fileExtension" id="$fileExtension">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-FileRouter.Router.AbstractImpl.html#17-23" title="Go to source code"><var>$fileExtension</var></a>
+		</td>
+		<td class="value"><code><span class="php-quote">'php'</span></code></td>
+		<td class="description"><div>
+			<a href="#$fileExtension" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Allowed file extension of the routing files. Only files with this extension
+are relevant for routing</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Allowed file extension of the routing files. Only files with this extension
+are relevant for routing</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="sourcePath" id="$sourcePath">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-SplFileInfo.html">SplFileInfo</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-FileRouter.Router.AbstractImpl.html#26-32" title="Go to source code"><var>$sourcePath</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$sourcePath" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Source path for routing. Only files in this path are relevant for
+routing.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Source path for routing. Only files in this path are relevant for
+routing.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>
