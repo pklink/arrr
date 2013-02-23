@@ -163,7 +163,13 @@ class CMS
         // route does not exist -> 404
         } catch (\FileRouter\Exception\Route\DoesNotExist $e) {
             $content = $this->systemRouter->handleRoute('404');
+
+        // other exception
+        } catch (\Exception $e) {
+            // do something
+            $content = $this->systemRouter->handleRoute('404');
         }
+
 
         // render template
         echo $this->twig->render('index.twig', array(
