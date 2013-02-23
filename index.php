@@ -4,7 +4,7 @@
 require 'vendor/autoload.php';
 
 // create app
-$mark = new CptHook\CMS();
+$cms = new CptHook\CMS();
 
 // run app
-$mark->run();
+$cms->run();

@@ -152,55 +152,6 @@
         ]
     },
     {
-        "name": "pklink/file-router",
-        "version": "0.2.1",
-        "version_normalized": "0.2.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/pklink/file-router.git",
-            "reference": "0.2.1"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/pklink/file-router/zipball/0.2.1",
-            "reference": "0.2.1",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0"
-        },
-        "require-dev": {
-            "apigen/apigen": "dev-master",
-            "phpunit/phpunit": "3.7.*@dev"
-        },
-        "time": "2013-02-21 15:56:55",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "FileRouter": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Pierre Klink",
-                "email": "dev@klinks.info",
-                "homepage": "http://www.klinks.info"
-            }
-        ],
-        "description": "Library for mapping files in a directory to routes",
-        "homepage": "https://github.com/pklink/file-router",
-        "keywords": [
-            "file",
-            "filesystem",
-            "routing"
-        ]
-    },
-    {
         "name": "pklink/dotor",
         "version": "0.1.2",
         "version_normalized": "0.1.2.0",
