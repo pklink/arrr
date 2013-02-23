@@ -57,11 +57,7 @@ class Mark
     private static function setRoutingParam()
     {
         $routingParam = self::$givenConfig->getScalar('routingParam', 'r');
-
-        if (isset($config['routingParam']))
-        {
-            self::$cms->setRoutingParam($routingParam);
-        }
+        self::$cms->setRoutingParam($routingParam);
     }
 
 
