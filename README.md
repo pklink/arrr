@@ -10,6 +10,10 @@ A content management based on markdown files
 4. Look in the res/content directory
 5. Read the code
 
+## Demo
+
+http://cpthook.einself.net/
+
 
 ```php
 // @TODO add documentation
