@@ -1,6 +1,6 @@
 <?php
 
-namespace CptHook\Swabbie;
+namespace CptHook\Builder;
 
 use Symfony\Component\HttpFoundation;
 use CptHook\Router;
@@ -10,7 +10,7 @@ use CptHook\Router;
  * @author Pierre Klink
  * @license MIT See LICENSE file for more details
  */
-class CMSGuy implements \CptHook\Swabbie
+class CMS implements \CptHook\Builder
 {
 
     /**
@@ -38,7 +38,7 @@ class CMSGuy implements \CptHook\Swabbie
      * @param \CptHook\CMS $cms
      * @throws \InvalidArgumentException
      */
-    public static function yarrr(array $config = [], $cms)
+    public static function build(array $config = [], $cms)
     {
         if (!($cms instanceof \CptHook\CMS))
         {
@@ -53,7 +53,7 @@ class CMSGuy implements \CptHook\Swabbie
         self::setRouter();
         self::setTwig();
         self::setRequest();
-        self::setHook();
+        self::setReceiver();
     }
 
 
@@ -78,16 +78,16 @@ class CMSGuy implements \CptHook\Swabbie
 
 
     /**
-     * Set Hook if hook.param is set
+     * Set Hook if receiver.param is set
      */
-    private static function setHook()
+    private static function setReceiver()
     {
-        $param = self::$givenConfig->get('hook.param');
+        $param = self::$givenConfig->get('receiver.routingParam');
 
         if ($param !== null)
         {
-            $config = self::$givenConfig->get('hook');
-            self::$cms->setHook(new \CptHook\Hook($config));
+            $config = self::$givenConfig->get('receiver');
+            self::$cms->setReceiver(new \CptHook\Receiver($config));
         }
     }
 

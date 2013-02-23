@@ -2,15 +2,15 @@
 
 namespace CptHook;
 
-use \Symfony\Component\Process\Process;
+use CptHook\Builder;
 
-class Hook
+class Receiver
 {
 
     /**
      * @var string
      */
-    protected $param;
+    protected $routingParam;
 
 
     /**
@@ -24,16 +24,16 @@ class Hook
      */
     public function __construct(array $config = [])
     {
-        Swabbie\HookGuy::yarrr($config, $this);
+        Builder\Receiver::build($config, $this);
     }
 
 
     /**
      * @return string
      */
-    public function getParam()
+    public function getRoutingParam()
     {
-        return $this->param;
+        return $this->routingParam;
     }
 
 
@@ -47,10 +47,19 @@ class Hook
 
 
     /**
+     * @return void
+     */
+    public function run()
+    {
+        $this->process->run();
+    }
+
+
+    /**
      * @param string $param
      * @throws \InvalidArgumentException
      */
-    public function setParam($param)
+    public function setRoutingParam($param)
     {
         // check if $param is a string
         if (!is_string($param))
@@ -64,7 +73,7 @@ class Hook
             throw new \InvalidArgumentException('$param needs to have a minimum-length of 12 characters');
         }
 
-        $this->param = $param;
+        $this->routingParam = $param;
     }
 
 

@@ -3,7 +3,7 @@
 namespace CptHook;
 
 use Symfony\Component\HttpFoundation;
-use CptHook\Swabbie;
+use CptHook\Builder;
 
 
 /**
@@ -20,9 +20,9 @@ class CMS
 
 
     /**
-     * @var Hook
+     * @var Receiver
      */
-    protected $hook;
+    protected $receiver;
 
 
     /**
@@ -67,16 +67,16 @@ class CMS
      */
     protected function __construct(array $config = [])
     {
-        Swabbie\CMSGuy::yarrr($config, $this);
+        Builder\CMS::build($config, $this);
     }
 
 
     /**
-     * @return \CptHook\Hook
+     * @return Receiver
      */
-    public function getHook()
+    public function getReceiver()
     {
-        return $this->hook;
+        return $this->receiver;
     }
 
 
@@ -90,7 +90,7 @@ class CMS
 
 
     /**
-     * @return \CptHook\Router
+     * @return Router
      */
     public function getContentRouter()
     {
@@ -108,7 +108,7 @@ class CMS
 
 
     /**
-     * @return \CptHook\Router
+     * @return Router
      */
     public function getSystemRouter()
     {
@@ -153,6 +153,13 @@ class CMS
      */
     public function run()
     {
+        if (($this->receiver instanceof Receiver) &&
+            $this->request->get($this->receiver->getRoutingParam()) !== null
+        ) {
+            $this->receiver->run();
+            return;
+        }
+
         // get contentRouter
         $route = $this->request->get($this->routingParam, 'home');
 
@@ -182,7 +189,7 @@ class CMS
 
 
     /**
-     * @param \CptHook\Router $router
+     * @param Router $router
      */
     public function setContentRouter(\CptHook\Router $router)
     {
@@ -191,11 +198,11 @@ class CMS
 
 
     /**
-     * @param \CptHook\Hook $hook
+     * @param Receiver $receiver
      */
-    public function setHook($hook)
+    public function setReceiver(Receiver $receiver)
     {
-        $this->hook = $hook;
+        $this->receiver = $receiver;
     }
 
 
@@ -224,7 +231,7 @@ class CMS
 
 
     /**
-     * @param \CptHook\Router $systemRouter
+     * @param Router $systemRouter
      */
     public function setSystemRouter($systemRouter)
     {
