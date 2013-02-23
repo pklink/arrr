@@ -28,6 +28,11 @@ class Mark
      * Prepare the $cms by the given configuartion
      *
      * @param array $config
+     *      string|array resourcePath (default: './res')
+     *          string content (default: resourcePath + '/content'
+     *          string system  (default: resourcePath + '/system'
+     *      string routingParm (default: 'r')
+     *      string templatePath (default: './themes/default'
      * @param CMS $cms
      */
     public static function arr(array $config = [], CMS $cms)
