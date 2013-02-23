@@ -33,6 +33,7 @@ class Mark
      *          string system  (default: resourcePath + '/system'
      *      string routingParm (default: 'r')
      *      string templatePath (default: './themes/default'
+     *      boolean debug (default: false)
      * @param CMS $cms
      */
     public static function arr(array $config = [], CMS $cms)
@@ -40,11 +41,33 @@ class Mark
         self::$givenConfig = new \Dotor\Dotor($config);
         self::$cms         = $cms;
 
+        self::setDebugging();
         self::setRoutingParam();
         self::setRouter();
         self::setTwig();
         self::setRequest();
     }
+
+
+    /**
+     * Set app in debugging mode if debbuging=true
+     */
+    private static function setDebugging()
+    {
+        if (self::$givenConfig->get('debug', false))
+        {
+            // transform errors to exceptions
+            \Eloquent\Asplode\Asplode::instance()->install();
+
+            // sett exception handler
+            set_exception_handler(array(
+                new \Exceptionist\DefaultExceptionHandler(),
+                'handle'
+            ));
+        }
+
+    }
+
 
 
     /**

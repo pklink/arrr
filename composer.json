@@ -9,6 +9,8 @@
         "pklink/dotor": "0.1.2",
         "dflydev/markdown": "v1.0.2",
         "symfony/http-foundation": "v2.1.7",
-        "twig/twig": "v1.12.2"
+        "twig/twig": "v1.12.2",
+        "softius/exceptionist": "dev-master",
+        "eloquent/asplode": "1.0.4"
     }
 }

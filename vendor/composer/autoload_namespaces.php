@@ -10,7 +10,10 @@ return array(
     'Twig_' => $vendorDir . '/twig/twig/lib/',
     'Symfony\\Component\\HttpFoundation' => $vendorDir . '/symfony/http-foundation/',
     'SessionHandlerInterface' => $vendorDir . '/symfony/http-foundation/Symfony/Component/HttpFoundation/Resources/stubs',
+    'Icecave\\Isolator' => $vendorDir . '/icecave/isolator/lib',
     'FileRouter' => $vendorDir . '/pklink/file-router/src/',
+    'Eloquent\\Asplode' => $vendorDir . '/eloquent/asplode/src',
     'Dotor' => $vendorDir . '/pklink/dotor/src/',
     'CptHook' => $baseDir . '/src/',
+    '' => $vendorDir . '/softius/exceptionist/src/',
 );
