@@ -2,6 +2,13 @@
 
 namespace CptHook;
 
+use Symfony\Component\HttpFoundation;
+
+
+/**
+ * @author Pierre Klink
+ * @license MIT See LICENSE file for more details
+ */
 class Mark
 {
 
@@ -17,6 +24,36 @@ class Mark
     private static $cms;
 
 
+    /**
+     * Prepare the $cms by the given configuartion
+     *
+     * @param array $config
+     * @param CMS $cms
+     */
+    public static function arr(array $config = [], CMS $cms)
+    {
+        self::$givenConfig = new \Dotor\Dotor($config);
+        self::$cms         = $cms;
+
+        self::setRoutingParam();
+        self::setRouter();
+        self::setTwig();
+        self::setRequest();
+    }
+
+
+    /**
+     * Create HttpFoundation\Request and set it to CMS
+     */
+    private static function setRequest()
+    {
+        self::$cms->setRequest(HttpFoundation\Request::createFromGlobals());
+    }
+
+
+    /**
+     * Set the routing param to CMS
+     */
     private static function setRoutingParam()
     {
         $routingParam = self::$givenConfig->getScalar('routingParam', 'r');
@@ -27,6 +64,10 @@ class Mark
         }
     }
 
+
+    /**
+     * Create system router and content router and set them in CMS
+     */
     private static function setRouter()
     {
         $resourcePath = self::$givenConfig->getScalar('resourcePath', realpath(__DIR__ . '/../../res'));
@@ -40,30 +81,16 @@ class Mark
         self::$cms->setSystemRouter(new Router($systemPath));
     }
 
+
+    /**
+     * Create Twig and set it to CMS
+     */
     private static function setTwig()
     {
         $templatePath = self::$givenConfig->getScalar('templatePath', realpath(__DIR__ . '/../../themes/default'));
         $loader       = new \Twig_Loader_Filesystem($templatePath);
 
         self::$cms->setTwig(new \Twig_Environment($loader));
-    }
-
-
-    private static function setRequest()
-    {
-        self::$cms->setRequest(\Symfony\Component\HttpFoundation\Request::createFromGlobals());
-    }
-
-
-    public static function arr(array $config = array(), CMS $cms)
-    {
-        self::$givenConfig = new \Dotor\Dotor($config);
-        self::$cms         = $cms;
-
-        self::setRoutingParam();
-        self::setRouter();
-        self::setTwig();
-        self::setRequest();
     }
 
 }

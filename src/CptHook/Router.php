@@ -5,6 +5,10 @@ namespace CptHook;
 use FileRouter\Router\AbstractImpl;
 use dflydev\markdown\MarkdownParser;
 
+/**
+ * @author Pierre Klink
+ * @license MIT See LICENSE file for more details
+ */
 class Router extends AbstractImpl
 {
 
