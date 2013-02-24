@@ -64,6 +64,7 @@ class Sir
         // add services
         foreach ($this->config->get('services', $defaultServices) as $configName => $factoryName)
         {
+            /* @var \CptHook\Service\Factory $factoryName */
             /* @var Service $service */
             $service = $factoryName::create($this->config->get($configName, []));
             $this->services->insert($service, $service->getPriority());

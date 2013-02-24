@@ -2,9 +2,9 @@
 
 namespace CptHook\Service;
 
-use CptHook\Builder;
+use CptHook\Service\Receiver\Process;
 
-class Receiver implements \CptHook\Service
+class Receiver extends AbstractImpl implements \CptHook\Service
 {
 
     /**
@@ -17,15 +17,6 @@ class Receiver implements \CptHook\Service
      * @var Process
      */
     protected $process;
-
-
-    /**
-     * @param array $config
-     */
-    public function __construct(array $config = [])
-    {
-        Builder\Receiver::build($config, $this);
-    }
 
 
     /**
@@ -47,9 +38,9 @@ class Receiver implements \CptHook\Service
 
 
     /**
-     * @return void
+     * @param string $param
      */
-    public function run()
+    public function run($param)
     {
         $this->process->run();
     }

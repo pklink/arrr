@@ -2,9 +2,6 @@
 
 namespace CptHook\Service;
 
-use CptHook\Builder;
-
-
 /**
  * @author Pierre Klink
  * @license MIT See LICENSE file for more details

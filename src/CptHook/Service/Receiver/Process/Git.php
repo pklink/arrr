@@ -1,10 +1,10 @@
 <?php
 
-namespace CptHook\Process;
+namespace CptHook\Service\Receiver\Process;
 
 use \Symfony\Component\Process\Process;
 
-class Git implements \CptHook\Process
+class Git implements \CptHook\Service\Receiver\Process
 {
 
     public function run()

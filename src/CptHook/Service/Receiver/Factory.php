@@ -1,8 +1,10 @@
 <?php
 
-namespace CptHook\Builder;
+namespace CptHook\Service\Receiver;
 
-class Factory implements \CptHook\Builder
+use CptHook\Service;
+
+class Factory implements \CptHook\Service\Factory
 {
 
     /**
@@ -12,23 +14,25 @@ class Factory implements \CptHook\Builder
 
 
     /**
-     * @var \CptHook\Receiver
+     * @var \CptHook\Service\Receiver
      */
     protected static $receiver;
 
 
     /**
      * @param array $config
-     * @param \CptHook\Receiver $receiver
-     * @throws \InvalidArgumentException
+     * @return Service\Receiver
      */
-    public static function build(array $config = [], \CptHook\Service $receiver)
+    public static function create(array $config = [])
     {
         self::$givenConfig = new \Dotor\Dotor($config);
-        self::$receiver    = $receiver;
+        self::$receiver    = new Service\Receiver();
 
         self::setRoutingParam();
         self::setProcess();
+        self::setPriority();
+
+        return self::$receiver;
     }
 
 
@@ -39,9 +43,15 @@ class Factory implements \CptHook\Builder
     }
 
 
+    private function setPriority()
+    {
+        self::$receiver->setPriority(100);
+    }
+
+
     private static function setProcess()
     {
-        self::$receiver->setProcess(new \CptHook\Process\Git());
+        self::$receiver->setProcess(new \CptHook\Service\Receiver\Process\Git());
     }
 
 
