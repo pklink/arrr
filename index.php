@@ -5,7 +5,10 @@ require 'vendor/autoload.php';
 
 // create app
 $sir = new \CptHook\Sir([
-    'webroot' => __DIR__,   // optionally, Sir will use the directory path of this file
+    'webroot'  => __DIR__,   // optionally, Sir will use the directory path of this file
+    'services' => [
+        'viewer' => '\CptHook\Service\Viewer\Factory', // <index in config> => <name of Service-Factory>
+    ],                       // optionally, this is the default value
     'viewer' => [
         'resourcePath' => [
             'content' => __DIR__ . '/res/content', // optionally; this is the default path

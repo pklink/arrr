@@ -9,6 +9,12 @@ class Sir
 {
 
     /**
+     * @var \Dotor\Dotor
+     */
+    protected $config;
+
+
+    /**
      * @var \SplPriorityQueue
      */
     protected $services;
@@ -28,28 +34,40 @@ class Sir
 
     public function __construct(array $config = [])
     {
+        // set properties
+        $this->config   = new \Dotor\Dotor($config);
+        $this->services = new \SplPriorityQueue();
+        $this->request  = HttpFoundation\Request::createFromGlobals();
+
         $this->init();
 
-        //check if webroot is set
-        if (!isset($config['webroot']))
-        {
-            $file = debug_backtrace()[0]['file'];
-            $config['webroot'] = pathinfo($file, PATHINFO_DIRNAME);
-        }
 
-        // set webroot
-        $this->setWebroot($config['webroot']);
-
-        // Viewer
-        $viewer = $config['viewer'];
-        $service = Service\Viewer\Factory::create($viewer);
-        $this->services->insert($service, $service->getPriority());
 
         // Receiver
         /*
         $receiver = $config['receiver'];
         $this->services[] = new \CptHook\Service\Receiver($receiver);
         */
+    }
+
+
+    /**
+     * @return void
+     */
+    protected function createServices()
+    {
+        // Default Services
+        $defaultServices = [
+            'viewer' => '\CptHook\Service\Viewer',
+        ];
+
+        // add services
+        foreach ($this->config->get('services', $defaultServices) as $configName => $factoryName)
+        {
+            /* @var Service $service */
+            $service = $factoryName::create($this->config->get($configName, []));
+            $this->services->insert($service, $service->getPriority());
+        }
     }
 
 
@@ -78,14 +96,23 @@ class Sir
     /**
      * @return void
      */
-    protected function init()
+    public function init()
     {
-        // set properties
-        $this->services = new \SplPriorityQueue();
-        $this->request  = HttpFoundation\Request::createFromGlobals();
-
         // transform errors to exceptions
         \Eloquent\Asplode\Asplode::instance()->install();
+
+        // set webroot
+        if ($this->config->get('webroot') !== null)
+        {
+            $file = debug_backtrace()[0]['file'];
+            $this->setWebroot(pathinfo($file, PATHINFO_DIRNAME));
+        }
+        else
+        {
+            $this->setWebroot($this->config->get('webroot'));
+        }
+
+        $this->createServices();
     }
 
 
