@@ -64,7 +64,7 @@ class Factory implements \CptHook\Service\Factory
 
             // sett exception handler
             set_exception_handler(array(
-                new \Exceptionist\DefaultExceptionHandler(),
+                new \Exceptionist\GenericExceptionHandler(),
                 'handle'
             ));
         }
