@@ -20,9 +20,25 @@ class Sir
     protected $request;
 
 
+    /**
+     * @var string
+     */
+    protected $webroot;
+
+
     public function __construct(array $config = [])
     {
         $this->init();
+
+        //check if webroot is set
+        if (!isset($config['webroot']))
+        {
+            $file = debug_backtrace()[0]['file'];
+            $config['webroot'] = pathinfo($file, PATHINFO_DIRNAME);
+        }
+
+        // set webroot
+        $this->setWebroot($config['webroot']);
 
         // Viewer
         $viewer = $config['viewer'];
@@ -51,6 +67,15 @@ class Sir
 
 
     /**
+     * @return string
+     */
+    public function getWebRoot()
+    {
+        return $this->webroot;
+    }
+
+
+    /**
      * @return void
      */
     protected function init()
@@ -61,6 +86,15 @@ class Sir
 
         // transform errors to exceptions
         \Eloquent\Asplode\Asplode::instance()->install();
+    }
+
+
+    /**
+     * @param $webroot
+     */
+    public function setWebroot($webroot)
+    {
+        $this->webroot = $webroot;
     }
 
 
@@ -85,6 +119,5 @@ class Sir
             }
         }
     }
-
 
 }
