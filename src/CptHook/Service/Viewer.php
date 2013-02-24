@@ -1,6 +1,6 @@
 <?php
 
-namespace CptHook;
+namespace CptHook\Service;
 
 use Symfony\Component\HttpFoundation;
 use CptHook\Builder;
@@ -10,29 +10,17 @@ use CptHook\Builder;
  * @author Pierre Klink
  * @license MIT See LICENSE file for more details
  */
-class CMS
+class Viewer extends AbstractImpl implements Autoloadable
 {
 
     /**
-     * @var Router
+     * @var Viewer\Router
      */
     protected $contentRouter;
 
 
     /**
-     * @var Receiver
-     */
-    protected $receiver;
-
-
-    /**
-     * @var CMS
-     */
-    protected static $instance;
-
-
-    /**
-     * @var Router
+     * @var Viewer\Router
      */
     protected $systemRouter;
 
@@ -63,24 +51,6 @@ class CMS
 
 
     /**
-     * @param array $config
-     */
-    protected function __construct(array $config = [])
-    {
-        Builder\CMS::build($config, $this);
-    }
-
-
-    /**
-     * @return Receiver
-     */
-    public function getReceiver()
-    {
-        return $this->receiver;
-    }
-
-
-    /**
      * @return HttpFoundation\Request
      */
     public function getRequest()
@@ -90,7 +60,7 @@ class CMS
 
 
     /**
-     * @return Router
+     * @return Viewer\Router
      */
     public function getContentRouter()
     {
@@ -108,7 +78,7 @@ class CMS
 
 
     /**
-     * @return Router
+     * @return Viewer\Router
      */
     public function getSystemRouter()
     {
@@ -126,40 +96,10 @@ class CMS
 
 
     /**
-     * @param array $config
-     */
-    public static function init(array $config = [])
-    {
-        self::$instance = new CMS($config);
-    }
-
-
-    /**
-     * @return CMS
-     */
-    public static function instance()
-    {
-        if (!(self::$instance instanceof CMS))
-        {
-            self::init();
-        }
-
-        return self::$instance;
-    }
-
-
-    /**
      * @return void
      */
     public function run()
     {
-        if (($this->receiver instanceof Receiver) &&
-            $this->request->get($this->receiver->getRoutingParam()) !== null
-        ) {
-            $this->receiver->run();
-            return;
-        }
-
         // get contentRouter
         $route = $this->request->get($this->routingParam, 'home');
 
@@ -189,20 +129,11 @@ class CMS
 
 
     /**
-     * @param Router $router
+     * @param Viewer\Router $router
      */
-    public function setContentRouter(\CptHook\Router $router)
+    public function setContentRouter(Viewer\Router $router)
     {
         $this->contentRouter = $router;
-    }
-
-
-    /**
-     * @param Receiver $receiver
-     */
-    public function setReceiver(Receiver $receiver)
-    {
-        $this->receiver = $receiver;
     }
 
 
@@ -231,7 +162,7 @@ class CMS
 
 
     /**
-     * @param Router $systemRouter
+     * @param Viewer\Router $systemRouter
      */
     public function setSystemRouter($systemRouter)
     {

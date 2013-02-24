@@ -2,7 +2,7 @@
 
 namespace CptHook\Builder;
 
-class Receiver implements \CptHook\Builder
+class Factory implements \CptHook\Builder
 {
 
     /**
@@ -22,13 +22,8 @@ class Receiver implements \CptHook\Builder
      * @param \CptHook\Receiver $receiver
      * @throws \InvalidArgumentException
      */
-    public static function build(array $config = [], $receiver)
+    public static function build(array $config = [], \CptHook\Service $receiver)
     {
-        if (!($receiver instanceof \CptHook\Receiver))
-        {
-            throw new \InvalidArgumentException('$receiver has to be an instance of \CptHook\Hook');
-        }
-
         self::$givenConfig = new \Dotor\Dotor($config);
         self::$receiver    = $receiver;
 

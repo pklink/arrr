@@ -1,10 +1,10 @@
 <?php
 
-namespace CptHook;
+namespace CptHook\Service;
 
 use CptHook\Builder;
 
-class Receiver
+class Receiver implements \CptHook\Service
 {
 
     /**

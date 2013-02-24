@@ -1,16 +1,15 @@
 <?php
 
-namespace CptHook\Builder;
+namespace CptHook\Service\Viewer;
 
 use Symfony\Component\HttpFoundation;
-use CptHook\Router;
 
 
 /**
  * @author Pierre Klink
  * @license MIT See LICENSE file for more details
  */
-class CMS implements \CptHook\Builder
+class Factory implements \CptHook\Service\Factory
 {
 
     /**
@@ -20,13 +19,13 @@ class CMS implements \CptHook\Builder
 
 
     /**
-     * @var \CptHook\CMS
+     * @var \CptHook\Service\Viewer
      */
-    private static $cms;
+    private static $viewer;
 
 
     /**
-     * Prepare the $cms by the given configuartion
+     * Prepare the $viewer by the given configuartion
      *
      * @param array $config
      *      string|array resourcePath (default: './res')
@@ -35,25 +34,21 @@ class CMS implements \CptHook\Builder
      *      string routingParm (default: 'r')
      *      string templatePath (default: './themes/default'
      *      boolean debug (default: false)
-     * @param \CptHook\CMS $cms
-     * @throws \InvalidArgumentException
+     * @return \CptHook\Service\Viewer
      */
-    public static function build(array $config = [], $cms)
+    public static function create(array $config = [])
     {
-        if (!($cms instanceof \CptHook\CMS))
-        {
-            throw new \InvalidArgumentException('$cms has to be an instance of \CptHook\CMS');
-        }
-
         self::$givenConfig = new \Dotor\Dotor($config);
-        self::$cms         = $cms;
+        self::$viewer      = new \CptHook\Service\Viewer();
 
         self::setDebugging();
         self::setRoutingParam();
         self::setRouter();
         self::setTwig();
         self::setRequest();
-        self::setReceiver();
+        self::setPriority();
+
+        return self::$viewer;
     }
 
 
@@ -77,18 +72,10 @@ class CMS implements \CptHook\Builder
     }
 
 
-    /**
-     * Set Hook if receiver.param is set
-     */
-    private static function setReceiver()
+    private static function setPriority()
     {
-        $param = self::$givenConfig->get('receiver.routingParam');
-
-        if ($param !== null)
-        {
-            $config = self::$givenConfig->get('receiver');
-            self::$cms->setReceiver(new \CptHook\Receiver($config));
-        }
+        $priority = self::$givenConfig->getScalar('priority', 50);
+        self::$viewer->setPriority($priority);
     }
 
 
@@ -97,7 +84,7 @@ class CMS implements \CptHook\Builder
      */
     private static function setRequest()
     {
-        self::$cms->setRequest(HttpFoundation\Request::createFromGlobals());
+        self::$viewer->setRequest(HttpFoundation\Request::createFromGlobals());
     }
 
 
@@ -107,7 +94,7 @@ class CMS implements \CptHook\Builder
     private static function setRoutingParam()
     {
         $routingParam = self::$givenConfig->getScalar('routingParam', 'r');
-        self::$cms->setRoutingParam($routingParam);
+        self::$viewer->setRoutingParam($routingParam);
     }
 
 
@@ -123,8 +110,8 @@ class CMS implements \CptHook\Builder
         $contentPath = new \SplFileInfo($contentPath);
         $systemPath  = new \SplFileInfo($systemPath);
 
-        self::$cms->setContentRouter(new Router($contentPath));
-        self::$cms->setSystemRouter(new Router($systemPath));
+        self::$viewer->setContentRouter(new \CptHook\Service\Viewer\Router($contentPath));
+        self::$viewer->setSystemRouter(new \CptHook\Service\Viewer\Router($systemPath));
     }
 
 
@@ -137,7 +124,7 @@ class CMS implements \CptHook\Builder
         $theme        = self::$givenConfig->getScalar('theme', 'default');
         $loader       = new \Twig_Loader_Filesystem(sprintf('%s/%s', $templatePath, $theme));
 
-        self::$cms->setTwig(new \Twig_Environment($loader));
+        self::$viewer->setTwig(new \Twig_Environment($loader));
     }
 
 }

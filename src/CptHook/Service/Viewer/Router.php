@@ -1,6 +1,6 @@
 <?php
 
-namespace CptHook;
+namespace CptHook\Service\Viewer;
 
 use FileRouter\Router\AbstractImpl;
 use dflydev\markdown\MarkdownParser;
