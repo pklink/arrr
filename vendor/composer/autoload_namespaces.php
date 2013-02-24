@@ -16,4 +16,5 @@ return array(
     'Eloquent\\Asplode' => $vendorDir . '/eloquent/asplode/src',
     'Dotor' => $vendorDir . '/pklink/dotor/src/',
     'CptHook' => $baseDir . '/src/',
+    '' => $vendorDir . '/softius/exceptionist/src/',
 );
