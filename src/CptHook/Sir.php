@@ -22,8 +22,7 @@ class Sir
 
     public function __construct(array $config = [])
     {
-        $this->services = new \SplPriorityQueue();
-        $this->request  = HttpFoundation\Request::createFromGlobals();
+        $this->init();
 
         // Viewer
         $viewer = $config['viewer'];
@@ -41,6 +40,33 @@ class Sir
     /**
      * @return void
      */
+    public function enableDebugging()
+    {
+        // set exception handler
+        set_exception_handler(array(
+            new \Exceptionist\GenericExceptionHandler(),
+            'handle'
+        ));
+    }
+
+
+    /**
+     * @return void
+     */
+    protected function init()
+    {
+        // set properties
+        $this->services = new \SplPriorityQueue();
+        $this->request  = HttpFoundation\Request::createFromGlobals();
+
+        // transform errors to exceptions
+        \Eloquent\Asplode\Asplode::instance()->install();
+    }
+
+
+    /**
+     * @return void
+     */
     public function yarrr()
     {
         while ($this->services->valid())
@@ -48,13 +74,14 @@ class Sir
             /* @var \CptHook\Service $service */
             $service = $this->services->extract();
 
-            // get routing param
+            // get routing param and param
             $routingParam = $service->getRoutingParam();
+            $param        = $this->request->get($routingParam);
 
             // check if routing param is in request
-            if ($service instanceof Autoloadable || $this->request->get($routingParam) !== null)
+            if ($service instanceof Autoloadable || $param !== null)
             {
-                $service->run();
+                $service->run($param);
             }
         }
     }

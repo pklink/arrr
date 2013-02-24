@@ -25,15 +25,15 @@ class Factory implements \CptHook\Service\Factory
 
 
     /**
-     * Prepare the $viewer by the given configuartion
+     * Create and prepare a instance of \CptHook\Service\Viewer
      *
      * @param array $config
+     *      integer priority (default: 50)
      *      string|array resourcePath (default: './res')
      *          string content (default: resourcePath + '/content'
      *          string system  (default: resourcePath + '/system'
      *      string routingParm (default: 'r')
      *      string templatePath (default: './themes/default'
-     *      boolean debug (default: false)
      * @return \CptHook\Service\Viewer
      */
     public static function create(array $config = [])
@@ -41,34 +41,12 @@ class Factory implements \CptHook\Service\Factory
         self::$givenConfig = new \Dotor\Dotor($config);
         self::$viewer      = new \CptHook\Service\Viewer();
 
-        self::setDebugging();
         self::setRoutingParam();
         self::setRouter();
         self::setTwig();
-        self::setRequest();
         self::setPriority();
 
         return self::$viewer;
-    }
-
-
-    /**
-     * Set app in debugging mode if debbuging=true
-     */
-    private static function setDebugging()
-    {
-        if (self::$givenConfig->get('debug', false))
-        {
-            // transform errors to exceptions
-            \Eloquent\Asplode\Asplode::instance()->install();
-
-            // sett exception handler
-            set_exception_handler(array(
-                new \Exceptionist\GenericExceptionHandler(),
-                'handle'
-            ));
-        }
-
     }
 
 
@@ -79,18 +57,6 @@ class Factory implements \CptHook\Service\Factory
     }
 
 
-    /**
-     * Create HttpFoundation\Request and set it to CMS
-     */
-    private static function setRequest()
-    {
-        self::$viewer->setRequest(HttpFoundation\Request::createFromGlobals());
-    }
-
-
-    /**
-     * Set the routing param to CMS
-     */
     private static function setRoutingParam()
     {
         $routingParam = self::$givenConfig->getScalar('routingParam', 'r');
@@ -98,9 +64,6 @@ class Factory implements \CptHook\Service\Factory
     }
 
 
-    /**
-     * Create system router and content router and set them in CMS
-     */
     private static function setRouter()
     {
         $resourcePath = self::$givenConfig->getScalar('resourcePath', realpath(__DIR__ . '/../../res'));
@@ -115,9 +78,6 @@ class Factory implements \CptHook\Service\Factory
     }
 
 
-    /**
-     * Create Twig and set it to CMS
-     */
     private static function setTwig()
     {
         $templatePath = self::$givenConfig->getScalar('templatePath', realpath(__DIR__ . '/../../themes'));

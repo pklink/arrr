@@ -2,7 +2,6 @@
 
 namespace CptHook\Service;
 
-use Symfony\Component\HttpFoundation;
 use CptHook\Builder;
 
 
@@ -26,14 +25,6 @@ class Viewer extends AbstractImpl implements Autoloadable
 
 
     /**
-     * Helper for accessing to the request
-     *
-     * @var HttpFoundation\Request
-     */
-    protected $request;
-
-
-    /**
      * The template engine
      *
      * @var \Twig_Environment
@@ -48,15 +39,6 @@ class Viewer extends AbstractImpl implements Autoloadable
      * @var string
      */
     protected $routingParam = 'r';
-
-
-    /**
-     * @return HttpFoundation\Request
-     */
-    public function getRequest()
-    {
-        return $this->request;
-    }
 
 
     /**
@@ -96,13 +78,10 @@ class Viewer extends AbstractImpl implements Autoloadable
 
 
     /**
-     * @return void
+     * @param string $route
      */
-    public function run()
+    public function run($route = 'home')
     {
-        // get contentRouter
-        $route = $this->request->get($this->routingParam, 'home');
-
         // handle contentRouter
         try {
             $content = $this->contentRouter->handleRoute($route);
@@ -134,15 +113,6 @@ class Viewer extends AbstractImpl implements Autoloadable
     public function setContentRouter(Viewer\Router $router)
     {
         $this->contentRouter = $router;
-    }
-
-
-    /**
-     * @param HttpFoundation\Request $request
-     */
-    public function setRequest(HttpFoundation\Request $request)
-    {
-        $this->request = $request;
     }
 
 
