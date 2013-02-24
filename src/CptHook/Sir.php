@@ -58,7 +58,7 @@ class Sir
     {
         // Default Services
         $defaultServices = [
-            'viewer' => '\CptHook\Service\Viewer',
+            'viewer' => '\CptHook\Service\Viewer\Factory',
         ];
 
         // add services
