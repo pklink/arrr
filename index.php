@@ -25,10 +25,8 @@ $sir = new \CptHook\Sir([
     ]
 ]);
 
-var_dump($sir->getWebRoot());
-
 // enable debugging
 $sir->enableDebugging();
 
 // run CMS
-$sir->yarrr();
+$sir->arrr();

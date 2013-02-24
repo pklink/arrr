@@ -101,7 +101,7 @@ class Sir
     /**
      * @return void
      */
-    public function yarrr()
+    public function arrr()
     {
         while ($this->services->valid())
         {
