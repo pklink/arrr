@@ -132,7 +132,7 @@ class Sir
     {
         while ($this->services->valid())
         {
-            /* @var \CptHook\Service $service */
+            /* @var Service $service */
             $service = $this->services->extract();
 
             // get routing param and param
@@ -140,9 +140,14 @@ class Sir
             $param        = $this->request->get($routingParam);
 
             // check if routing param is in request
-            if ($service instanceof Autoloadable || $param !== null)
+            if ($param !== null)
             {
                 $service->run($param);
+            }
+            else if ($service instanceof Autoloadable)
+            {
+                /* @var Service\Autoloadable $service */
+                $service->run($service->getDefaultParam());
             }
         }
     }

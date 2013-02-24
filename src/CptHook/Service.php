@@ -21,7 +21,7 @@ interface Service
      * @param string $param
      * @return void
      */
-    public function run($param = null);
+    public function run($param);
 
 
     /**

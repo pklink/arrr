@@ -53,6 +53,15 @@ class Viewer extends AbstractImpl implements Autoloadable
     /**
      * @return string
      */
+    public function getDefaultParam()
+    {
+        return 'home';
+    }
+
+
+    /**
+     * @return string
+     */
     public function getRoutingParam()
     {
         return $this->routingParam;
@@ -80,7 +89,7 @@ class Viewer extends AbstractImpl implements Autoloadable
     /**
      * @param string $route
      */
-    public function run($route = 'home')
+    public function run($route)
     {
         // handle contentRouter
         try {
