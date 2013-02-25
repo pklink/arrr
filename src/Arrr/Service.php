@@ -1,6 +1,6 @@
 <?php
 
-namespace CptHook;
+namespace Arrr;
 
 interface Service
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace CptHook\Service;
+namespace Arrr\Service;
 
-use CptHook\Service\Receiver\Process;
+use Arrr\Service\Receiver\Process;
 
-class Receiver extends AbstractImpl implements \CptHook\Service
+class Receiver extends AbstractImpl implements \Arrr\Service
 {
 
     /**

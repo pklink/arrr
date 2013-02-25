@@ -1,8 +1,8 @@
 <?php
 
-namespace CptHook\Service;
+namespace Arrr\Service;
 
-interface Autoloadable extends \CptHook\Service
+interface Autoloadable extends \Arrr\Service
 {
 
     /**

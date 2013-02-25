@@ -15,6 +15,6 @@ return array(
     'FileRouter' => $vendorDir . '/pklink/file-router/src/',
     'Eloquent\\Asplode' => $vendorDir . '/eloquent/asplode/src',
     'Dotor' => $vendorDir . '/pklink/dotor/src/',
-    'CptHook' => $baseDir . '/src/',
+    'Arrr' => $baseDir . '/src/',
     '' => $vendorDir . '/softius/exceptionist/src/',
 );

@@ -1,10 +1,10 @@
 <?php
 
-namespace CptHook\Service\Receiver;
+namespace Arrr\Service\Receiver;
 
-use CptHook\Service;
+use Arrr\Service;
 
-class Factory implements \CptHook\Service\Factory
+class Factory implements \Arrr\Service\Factory
 {
 
     /**
@@ -14,7 +14,7 @@ class Factory implements \CptHook\Service\Factory
 
 
     /**
-     * @var \CptHook\Service\Receiver
+     * @var \Arrr\Service\Receiver
      */
     protected static $receiver;
 
@@ -52,7 +52,7 @@ class Factory implements \CptHook\Service\Factory
 
     private static function setProcess()
     {
-        self::$receiver->setProcess(new \CptHook\Service\Receiver\Process\Git());
+        self::$receiver->setProcess(new \Arrr\Service\Receiver\Process\Git());
     }
 
 

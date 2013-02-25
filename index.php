@@ -4,12 +4,12 @@
 require 'vendor/autoload.php';
 
 // create app
-$sir = new \CptHook\Sir([
+$sir = new \Arrr\Sir([
     'debug'    => true,
     'webroot'  => __DIR__,   // optionally, Sir will use the directory path of this file
     'services' => [
-        'viewer'   => '\CptHook\Service\Viewer\Factory', // <index in config> => <name of Service-Factory>
-        'receiver' => '\CptHook\Service\Receiver\Factory'
+        'viewer'   => '\Arrr\Service\Viewer\Factory', // <index in config> => <name of Service-Factory>
+        'receiver' => '\Arrr\Service\Receiver\Factory'
     ],                       // optionally, this is the default value
     'viewer' => [
         'enabled'      => true, // optionally; true is the default value

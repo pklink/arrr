@@ -1,6 +1,6 @@
 <?php
 
-namespace CptHook\Service\Receiver;
+namespace Arrr\Service\Receiver;
 
 
 interface Process

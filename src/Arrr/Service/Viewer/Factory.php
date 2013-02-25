@@ -1,6 +1,6 @@
 <?php
 
-namespace CptHook\Service\Viewer;
+namespace Arrr\Service\Viewer;
 
 use Symfony\Component\HttpFoundation;
 
@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation;
  * @author Pierre Klink
  * @license MIT See LICENSE file for more details
  */
-class Factory implements \CptHook\Service\Factory
+class Factory implements \Arrr\Service\Factory
 {
 
     /**
@@ -19,13 +19,13 @@ class Factory implements \CptHook\Service\Factory
 
 
     /**
-     * @var \CptHook\Service\Viewer
+     * @var \Arrr\Service\Viewer
      */
     private static $viewer;
 
 
     /**
-     * Create and prepare a instance of \CptHook\Service\Viewer
+     * Create and prepare a instance of \Arrr\Service\Viewer
      *
      * @param array $config
      *      integer priority (default: 50)
@@ -34,12 +34,12 @@ class Factory implements \CptHook\Service\Factory
      *          string system  (default: resourcePath + '/system'
      *      string routingParm (default: 'r')
      *      string templatePath (default: './themes/default'
-     * @return \CptHook\Service\Viewer
+     * @return \Arrr\Service\Viewer
      */
     public static function create(array $config = [])
     {
         self::$givenConfig = new \Dotor\Dotor($config);
-        self::$viewer      = new \CptHook\Service\Viewer();
+        self::$viewer      = new \Arrr\Service\Viewer();
 
         self::setRoutingParam();
         self::setRouter();
@@ -73,8 +73,8 @@ class Factory implements \CptHook\Service\Factory
         $contentPath = new \SplFileInfo($contentPath);
         $systemPath  = new \SplFileInfo($systemPath);
 
-        self::$viewer->setContentRouter(new \CptHook\Service\Viewer\Router($contentPath));
-        self::$viewer->setSystemRouter(new \CptHook\Service\Viewer\Router($systemPath));
+        self::$viewer->setContentRouter(new \Arrr\Service\Viewer\Router($contentPath));
+        self::$viewer->setSystemRouter(new \Arrr\Service\Viewer\Router($systemPath));
     }
 
 

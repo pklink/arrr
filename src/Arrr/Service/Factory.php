@@ -1,13 +1,13 @@
 <?php
 
-namespace CptHook\Service;
+namespace Arrr\Service;
 
 interface Factory
 {
 
     /**
      * @param array $config
-     * @return \CptHook\Service
+     * @return \Arrr\Service
      */
     public static function create(array $config = []);
 

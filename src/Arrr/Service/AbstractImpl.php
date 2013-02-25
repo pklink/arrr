@@ -1,6 +1,6 @@
 <?php
 
-namespace CptHook\Service;
+namespace Arrr\Service;
 
 class AbstractImpl
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace CptHook;
+namespace Arrr;
 
 use \Symfony\Component\HttpFoundation;
-use \CptHook\Service\Autoloadable;
+use \Arrr\Service\Autoloadable;
 
 class Sir
 {
@@ -50,7 +50,7 @@ class Sir
     {
         // Default Services
         $defaultServices = [
-            'viewer' => '\CptHook\Service\Viewer\Factory',
+            'viewer' => '\Arrr\Service\Viewer\Factory',
         ];
 
         // add services
@@ -62,7 +62,7 @@ class Sir
                 continue;
             }
 
-            /* @var \CptHook\Service\Factory $factoryName */
+            /* @var \Arrr\Service\Factory $factoryName */
             /* @var Service $service */
             $service = $factoryName::create($this->config->get($configName, []));
             $this->services->insert($service, $service->getPriority());
