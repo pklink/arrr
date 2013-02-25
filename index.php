@@ -4,7 +4,7 @@
 require 'vendor/autoload.php';
 
 // create app
-$sir = new \Arrr\Arrr([
+$arrr = new \Arrr\Arrr([
     'debug'    => true,
     'webroot'  => __DIR__,   // optionally, Sir will use the directory path of this file
     'services' => [
@@ -33,4 +33,4 @@ $sir = new \Arrr\Arrr([
 ]);
 
 // run CMS
-$sir->arrr();
+$arrr->arrr();
