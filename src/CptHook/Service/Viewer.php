@@ -124,13 +124,13 @@ class Viewer extends AbstractImpl implements Autoloadable
 
     /**
      * @param $routingParam
-     * @throws \InvalidArgumentException
+     * @throws \UnexpectedValueException
      */
     public function setRoutingParam($routingParam)
     {
         if (!is_string($routingParam))
         {
-            throw new \InvalidArgumentException('$routingParam has to be a string');
+            throw new \UnexpectedValueException('$routingParam has to be a string');
         }
 
         $this->routingParam = $routingParam;

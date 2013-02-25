@@ -48,6 +48,7 @@ class Receiver extends AbstractImpl implements \CptHook\Service
 
     /**
      * @param string $param
+     * @throws \UnexpectedValueException
      * @throws \InvalidArgumentException
      */
     public function setRoutingParam($param)
@@ -55,7 +56,7 @@ class Receiver extends AbstractImpl implements \CptHook\Service
         // check if $param is a string
         if (!is_string($param))
         {
-            throw new \InvalidArgumentException('$param has to be a string');
+            throw new \UnexpectedValueException('$param has to be a string');
         }
 
         // check if the length if $param is minimum 12
