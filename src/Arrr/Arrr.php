@@ -5,7 +5,7 @@ namespace Arrr;
 use \Symfony\Component\HttpFoundation;
 use \Arrr\Service\Autoloadable;
 
-class Sir
+class Arrr
 {
 
     /**

@@ -4,7 +4,7 @@
 require 'vendor/autoload.php';
 
 // create app
-$sir = new \Arrr\Sir([
+$sir = new \Arrr\Arrr([
     'debug'    => true,
     'webroot'  => __DIR__,   // optionally, Sir will use the directory path of this file
     'services' => [
