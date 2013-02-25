@@ -9,9 +9,8 @@ class Git implements \Arrr\Service\Receiver\Process
 
     public function run()
     {
-        $process = new Process('ls');
+        $process = new Process('git pull origin master');
         $process->run();
-        echo $process->getOutput();
     }
 
 }
