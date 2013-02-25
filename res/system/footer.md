@@ -1,4 +1,4 @@
-based on [Cpt. Mark Hook CMS][1]
+based on [Arrr!][1]
 
 
 [1]: https://github.com/pklink/arrr
