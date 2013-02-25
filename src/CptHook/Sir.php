@@ -56,6 +56,12 @@ class Sir
         // add services
         foreach ($this->config->get('services', $defaultServices) as $configName => $factoryName)
         {
+            // continue if service not enabled
+            if ($this->config->get( sprintf('%s.enabled', $configName), true) === false)
+            {
+                continue;
+            }
+
             /* @var \CptHook\Service\Factory $factoryName */
             /* @var Service $service */
             $service = $factoryName::create($this->config->get($configName, []));
