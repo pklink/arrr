@@ -77,11 +77,8 @@ class Arrr
      */
     protected function createServices()
     {
-        // Default Services
-        $defaultServices = ['viewer'];
-
         // add services
-        foreach ($this->config->get('services', $defaultServices) as $serviceName)
+        foreach ($this->config->get('services', []) as $serviceName)
         {
             // continue if service not enabled
             if ($this->config->get( sprintf('%s.enabled', $serviceName), true) === false)
