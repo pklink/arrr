@@ -39,8 +39,9 @@ class Receiver extends AbstractImpl implements \Arrr\Service
 
     /**
      * @param string $param
+     * @param Chain $serviceChain
      */
-    public function run($param)
+    public function run($param, Chain $serviceChain)
     {
         $this->process->run();
     }

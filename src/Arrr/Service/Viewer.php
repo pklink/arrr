@@ -85,8 +85,9 @@ class Viewer extends AbstractImpl implements Autoloadable
 
     /**
      * @param string $route
+     * @param Chain $serviceChain
      */
-    public function run($route)
+    public function run($route, Chain $serviceChain)
     {
         // handle contentRouter
         try {

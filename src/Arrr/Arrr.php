@@ -15,9 +15,9 @@ class Arrr
 
 
     /**
-     * @var \SplPriorityQueue
+     * @var Service\Chain
      */
-    protected $services;
+    protected $serviceChain;
 
 
     /**
@@ -36,7 +36,7 @@ class Arrr
     {
         // set properties
         $this->config   = new \Dotor\Dotor($config);
-        $this->services = new \SplPriorityQueue();
+        $this->serviceChain = new Service\Chain();
         $this->request  = HttpFoundation\Request::createFromGlobals();
 
         $this->init();
@@ -48,10 +48,10 @@ class Arrr
      */
     public function arrr()
     {
-        while ($this->services->valid())
+        while ($this->serviceChain->valid())
         {
             /* @var Service $service */
-            $service = $this->services->extract();
+            $service = $this->serviceChain->extract();
 
             // get routing param and param
             $routingParam = $service->getRoutingParam();
@@ -60,12 +60,12 @@ class Arrr
             // check if routing param is in request
             if ($param !== null)
             {
-                $service->run($param);
+                $service->run($param, $this->serviceChain);
             }
             else if ($service instanceof Autoloadable)
             {
                 /* @var Service\Autoloadable $service */
-                $service->run($service->getDefaultParam());
+                $service->run($service->getDefaultParam(), $this->serviceChain);
             }
         }
     }
@@ -142,7 +142,7 @@ class Arrr
             // create service
             /* @var Service $service */
             $service = $factory::$createMethod($serviceConfig->get());
-            $this->services->insert($service, $service->getPriority());
+            $this->serviceChain->insert($service, $service->getPriority());
         }
     }
 

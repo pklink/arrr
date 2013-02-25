@@ -18,10 +18,11 @@ interface Service
 
 
     /**
-     * @param string $param
+     * @param $param
+     * @param Service\Chain $serviceChain
      * @return void
      */
-    public function run($param);
+    public function run($param, Service\Chain $serviceChain);
 
 
     /**
