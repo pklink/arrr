@@ -12,7 +12,7 @@ A content management based on markdown files
 
 ## Demo
 
-http://cpthook.einself.net/
+http://arrr.einself.net/
 
 
 ```php
