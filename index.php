@@ -5,9 +5,11 @@ require 'vendor/autoload.php';
 
 // create app
 $sir = new \CptHook\Sir([
+    'debug'    => true,
     'webroot'  => __DIR__,   // optionally, Sir will use the directory path of this file
     'services' => [
-        'viewer' => '\CptHook\Service\Viewer\Factory', // <index in config> => <name of Service-Factory>
+        'viewer'   => '\CptHook\Service\Viewer\Factory', // <index in config> => <name of Service-Factory>
+        'receiver' => '\CptHook\Service\Receiver\Factory'
     ],                       // optionally, this is the default value
     'viewer' => [
         'resourcePath' => [
@@ -20,16 +22,15 @@ $sir = new \CptHook\Sir([
         'priority'     => 50,                  // optionally; this is the default value
     ],
     'receiver' => [
+        //'routingParam' => 'nSgBwtF2d6MgjH5pRc',
         'routingParam' => null, // optionally; null means updates are disabled
                                 // if you like to use updates set this option to a hard to guess string
                                 // with minimum length of 12 characters
         // TODO: implement process
-        'process' => 'Git' // optionally; this is the default value
+        'process'  => 'Git', // optionally; this is the default value
+        'priority' => 100,   // optionally; this is the default value
     ]
 ]);
-
-// enable debugging
-$sir->enableDebugging();
 
 // run CMS
 $sir->arrr();

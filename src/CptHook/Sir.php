@@ -40,14 +40,6 @@ class Sir
         $this->request  = HttpFoundation\Request::createFromGlobals();
 
         $this->init();
-
-
-
-        // Receiver
-        /*
-        $receiver = $config['receiver'];
-        $this->services[] = new \CptHook\Service\Receiver($receiver);
-        */
     }
 
 
@@ -75,7 +67,7 @@ class Sir
     /**
      * @return void
      */
-    public function enableDebugging()
+    protected function enableDebugging()
     {
         // set exception handler
         set_exception_handler(array(
@@ -101,6 +93,11 @@ class Sir
     {
         // transform errors to exceptions
         \Eloquent\Asplode\Asplode::instance()->install();
+
+        if ($this->config->get('debug', false))
+        {
+            $this->enableDebugging();
+        }
 
         // set webroot
         if ($this->config->get('webroot') !== null)

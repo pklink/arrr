@@ -43,9 +43,10 @@ class Factory implements \CptHook\Service\Factory
     }
 
 
-    private function setPriority()
+    private static function setPriority()
     {
-        self::$receiver->setPriority(100);
+        $priority = self::$givenConfig->get('priority', 100);
+        self::$receiver->setPriority($priority);
     }
 
 

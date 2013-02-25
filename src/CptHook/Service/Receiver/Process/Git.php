@@ -11,6 +11,7 @@ class Git implements \CptHook\Service\Receiver\Process
     {
         $process = new Process('ls');
         $process->run();
+        echo $process->getOutput();
     }
 
 }
