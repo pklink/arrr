@@ -5,7 +5,7 @@ require 'vendor/autoload.php';
 
 // create Arrr
 $arrr = new \Arrr\Arrr(
-    require __DIR__ . '/config/full.php'
+    require __DIR__ . '/config/dev.php'
 );
 
 // run ...
